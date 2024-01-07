@@ -12,14 +12,10 @@
     color: #ffffff; /* Light text */
   }
   #sidebar {
-    width: 250px;
-    height: 100vh;
     background-color: #1f1f1f; /* Slightly lighter dark shade for the sidebar */
-    float: left;
     padding: 20px;
   }
   #main-content {
-    margin-left: 250px;
     padding: 20px;
   }
   .tab {
@@ -35,6 +31,33 @@
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
+  }
+
+  /* Responsive styles */
+  @media (min-width: 768px) {
+    /* Desktops and larger tablets */
+    #sidebar {
+      width: 250px;
+      height: 100vh;
+      float: left;
+    }
+    #main-content {
+      margin-left: 250px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    /* Smaller tablets and mobiles */
+    #sidebar {
+      width: 100%;
+      height: auto;
+    }
+    #main-content {
+      margin-left: 0;
+    }
+    .tab {
+      display: block; /* Stack the tabs vertically on small screens */
+    }
   }
 </style>
 </head>
