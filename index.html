@@ -32,6 +32,17 @@
     height: 100px;
     margin-bottom: 20px;
   }
+  
+  /* Centering the Projects section title */
+  #projects h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 30px; /* Add space below the section title */
+  }
+
+  .project {
+    margin-bottom: 40px; /* Increase the bottom margin to add more space between projects */
+  }
 
   /* Responsive styles */
   @media (min-width: 768px) {
@@ -66,8 +77,8 @@
   <div id="sidebar">
     <!-- Replace the div with an img tag -->
     <img id="headshot" src="Headshot.jpg" alt="Headshot"> <!-- Headshot image -->
-    <div class="tab" onclick="changeContent('projects')">Projects</div>
     <div class="tab" onclick="changeContent('about')">About Me</div>
+    <div class="tab" onclick="changeContent('projects')">Projects</div>
     <div class="tab" onclick="changeContent('contact')">Contact</div>
     <!-- Add more tabs as needed -->
   </div>
@@ -79,17 +90,47 @@
 </div>
 
 <script>
-  // Content for each tab
-  var content = {
-    'projects': '<h2>Projects</h2><p>Details about my projects...</p>',
-    'about': '<h2>About Me</h2><p>A little bit about myself...</p>',
-    'contact': '<h2>Contact</h2><p>How to reach me...</p>'
-    // Add more content for additional tabs as needed
-  };
+  // Project details in a structured format
+  var projects = [
+    {
+      title: "This website! (Jan 2024)",
+      description: `Made this website from scratch with very little understanding of HTML
+                    Finding the way to register the site yadaydaydaydyadya`
+    },
+    {
+      title: "Heuristic 2048 (Dec 2023)",
+      description: `Crafted 2048 from scratch into C++ that utilized several data structures such as binary search
+                    trees and open hashtables for an imaginary global scoreboard. For the Heuristics: 
+                    Created a quadtree of all possible moves til a set amount of moves. It would return 
+                    the player a game board that had the best possible positions. Trail and error was required to 
+                    understand what weights for a better board.`
+    },
+    // Add more project objects as needed
+  ];
+
+  // Function to build the projects HTML
+  function buildProjectsHTML(projects) {
+    return projects.map(function(project) {
+      return `
+        <div class="project">
+          <h3>${project.title}</h3>
+          <p>${project.description}</p>
+        </div>
+      `;
+    }).join(''); // Join all project strings into one HTML string
+  }
 
   // Function to change content
   function changeContent(tab) {
-    document.getElementById('main-content').innerHTML = content[tab];
+    var htmlContent = '';
+    if (tab === 'projects') {
+      htmlContent = `<div id="projects"><h2>Projects</h2>${buildProjectsHTML(projects)}</div>`;
+    } else if (tab === 'about') {
+      htmlContent = '<h2>About Me</h2><p>A little bit about myself...</p>';
+    } else if (tab === 'contact') {
+      htmlContent = '<h2>Contact</h2><p>connorbeare@gmail.com</p><p>209-834-4986</p>';
+    }
+    document.getElementById('main-content').innerHTML = htmlContent;
   }
 </script>
 
